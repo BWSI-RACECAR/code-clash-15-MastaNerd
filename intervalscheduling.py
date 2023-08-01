@@ -40,8 +40,31 @@ class Solution:
             #type intervals: list of int tuples
             #return type: list of int tuples
             
-            #TODO: Write code below to return an int tuples list with the solution to the prompt.
-            pass
+        listOfStart = []
+        for i in intervals:
+            listOfStart.append(i[0])
+        
+        listOfEnd = []
+        for i in intervals:
+            listOfStart.append(i[1])
+        
+        listOfStart.sort()
+        listOfEnd.sort()
+
+        sortedIntervals = sorted(intervals, key=lambda tup: tup[0])
+
+
+        effList = []
+
+        for i in range(0, len(sortedIntervals)):
+            for j in range(i, len(sortedIntervals)):
+                if sortedIntervals[j][1] >= sortedIntervals[i][0]:
+                    effList.append(sortedIntervals[i])
+                    effList.append(sortedIntervals[j])
+        return effList
+
+
+
 
 
 
