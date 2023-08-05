@@ -37,30 +37,15 @@ Select all three (1, 2), (2, 3) and (3, 4) as those are all compatible events an
 
 class Solution:
     def interval_scheduling(self, intervals):
-            #type intervals: list of int tuples
-            #return type: list of int tuples
-            
-        listOfStart = []
-        for i in intervals:
-            listOfStart.append(i[0])
-        
-        listOfEnd = []
-        for i in intervals:
-            listOfStart.append(i[1])
-        
-        listOfStart.sort()
-        listOfEnd.sort()
-
-        sortedIntervals = sorted(intervals, key=lambda tup: tup[0])
-
-
+        intervals = sorted(intervals, key = lambda x: x[1])
         effList = []
-
-        for i in range(0, len(sortedIntervals)):
-            for j in range(i, len(sortedIntervals)):
-                if sortedIntervals[j][1] >= sortedIntervals[i][0]:
-                    effList.append(sortedIntervals[i])
-                    effList.append(sortedIntervals[j])
+        prevNum = 0
+        for i in intervals:
+            start = i[0]
+            endNum = i[1]
+            if start >= prevNum:
+                effList.append(i)
+                prevNum = endNum
         return effList
 
 
